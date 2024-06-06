@@ -1,0 +1,11 @@
+[package]
+name = "visu"
+version = "0.1.0"
+edition = "2021"
+authors = ["Vladas Zakrevksis <146100@gmail.com>"]
+description = "Tool to simply visualise data"
+license = "MIT OR Apache-2.0"
+homepage = "https://github.com/VladasZ/visu"
+repository = "https://github.com/VladasZ/visu"
+
+[dependencies]
