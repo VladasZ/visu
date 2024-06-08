@@ -1,3 +1,3 @@
-# vents
+# visu
 
-Events system.
+Tool to simply visualise data.
