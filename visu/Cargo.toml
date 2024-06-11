@@ -11,3 +11,4 @@ repository = "https://github.com/VladasZ/visu"
 [dependencies]
 anyhow = "1.0"
 plotters = "0.3"
+count-digits = "0.5"

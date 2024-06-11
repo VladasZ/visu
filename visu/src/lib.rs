@@ -1,8 +1,8 @@
-use std::env::current_dir;
+mod normalized_data;
 
 use plotters::{
     backend::BitMapBackend,
-    coord::types::{RangedCoordu128, RangedCoordu64},
+    coord::types::RangedCoordu128,
     drawing::IntoDrawingArea,
     prelude::{
         Cartesian2d, ChartBuilder, ChartContext, LabelAreaPosition, LineSeries, PathElement, RGBAColor,
@@ -12,7 +12,7 @@ use plotters::{
 };
 
 struct AccrualsData {
-    day:    u64,
+    day:    u128,
     steps:  u128,
     simple: u128,
 }
@@ -20,7 +20,7 @@ struct AccrualsData {
 #[test]
 #[ignore]
 fn plot() -> anyhow::Result<()> {
-    render_chart("Step jars interest", get_data(), "walk.png")?;
+    // render_chart("Step jars interest", get_data(), "walk.png")?;
 
     Ok(())
 }
@@ -30,8 +30,8 @@ fn render_chart(name: &str, data: Vec<AccrualsData>, output: &str) -> anyhow::Re
 
     root.fill(&WHITE)?;
 
-    let min_x: u64 = data.iter().map(|data| data.day).min().unwrap();
-    let max_x: u64 = data.iter().map(|data| data.day).max().unwrap();
+    let min_x: u128 = data.iter().map(|data| data.day).min().unwrap();
+    let max_x: u128 = data.iter().map(|data| data.day).max().unwrap();
 
     let min_y: u128 = data.iter().map(|data| data.steps).min().unwrap();
     let max_y: u128 = data.iter().map(|data| data.simple).max().unwrap(); // + NearToken::from_near(12).as_yoctonear();
@@ -96,8 +96,8 @@ fn render_chart(name: &str, data: Vec<AccrualsData>, output: &str) -> anyhow::Re
 }
 
 fn draw_graph(
-    chart: &mut ChartContext<BitMapBackend, Cartesian2d<RangedCoordu64, RangedCoordu128>>,
-    data: impl IntoIterator<Item = (u64, u128)>,
+    chart: &mut ChartContext<BitMapBackend, Cartesian2d<RangedCoordu128, RangedCoordu128>>,
+    data: impl IntoIterator<Item = (u128, u128)>,
     label: &str,
     color: impl Into<RGBAColor>,
 ) -> anyhow::Result<()> {
