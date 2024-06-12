@@ -23,8 +23,10 @@ pub fn render_chart<const SIZE: usize>(
 
     let data = normalize_data(data);
 
+    dbg!(&data);
+
     let mut chart = ChartBuilder::on(&root)
-        .set_label_area_size(LabelAreaPosition::Left, 150)
+        .set_label_area_size(LabelAreaPosition::Left, 800)
         .set_label_area_size(LabelAreaPosition::Bottom, 100)
         .margin(10)
         .caption(name, ("sans-serif", 60))
@@ -37,7 +39,7 @@ pub fn render_chart<const SIZE: usize>(
         .x_label_style(("sans-serif", 40))
         .x_desc("Days")
         .y_desc("$SWEAT / APY %")
-        .y_label_formatter(&|value| format!("{:.1}", *value as f64))
+        .y_label_formatter(&|value| format!("{:.1}", value / data.y_divider))
         .draw()?;
 
     // draw_graph(
