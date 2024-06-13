@@ -45,7 +45,7 @@ pub fn render_chart<const SIZE: usize>(graph: Graph<SIZE>) -> Result<()> {
     let data = normalize_data(graph.data);
 
     let mut chart = ChartBuilder::on(&root)
-        .set_label_area_size(LabelAreaPosition::Left, 200)
+        .set_label_area_size(LabelAreaPosition::Left, 100)
         .set_label_area_size(LabelAreaPosition::Bottom, 100)
         .margin(10)
         .caption(graph.title, ("sans-serif", 60))
@@ -58,7 +58,16 @@ pub fn render_chart<const SIZE: usize>(graph: Graph<SIZE>) -> Result<()> {
         .x_label_style(("sans-serif", 40))
         .x_desc(graph.x_title)
         .y_desc(graph.y_title)
-        .y_label_formatter(&|value| format!("{:.1}", value / data.y_divider))
+        .y_label_formatter(&|value| {
+            format!(
+                "{:.1}",
+                if data.y_divider > 0 {
+                    value / data.y_divider
+                } else {
+                    *value
+                }
+            )
+        })
         .draw()?;
 
     for (i, data) in data.data.iter().enumerate() {
