@@ -6,14 +6,14 @@ use plotters::{
     drawing::IntoDrawingArea,
     element::PathElement,
     prelude::{
-        Cartesian2d, LineSeries, RGBAColor, RGBColor, BLACK, BLUE, CYAN, GREEN, MAGENTA, WHITE, YELLOW,
+        Cartesian2d, LineSeries, RGBAColor, RGBColor, BLACK, BLUE, CYAN, GREEN, MAGENTA, RED, WHITE, YELLOW,
     },
     style::Color,
 };
 
 use crate::normalized_data::normalize_data;
 
-const COLORS: [RGBColor; 5] = [GREEN, BLUE, MAGENTA, CYAN, YELLOW];
+const COLORS: [RGBColor; 7] = [GREEN, BLUE, MAGENTA, CYAN, YELLOW, RED, BLACK];
 
 pub struct Graph<'a, const SIZE: usize> {
     pub title:       &'a str,
